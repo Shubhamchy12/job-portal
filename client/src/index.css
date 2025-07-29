@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: Outfit;
+}
+
+/* custom css */
+
+@layer base {
+    html{
+        scroll-behavior: smooth;
+    }
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.rich-text {
+    font-family: Arial, sans-serif;
+    color: #374151;
+    line-height: 1.7;
+    margin-top: 30px;
+}
+
+.rich-text h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.rich-text p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.rich-text ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.rich-text ol li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    list-style-type: decimal; /* default hota hai, optional */
+}
+
+@media (max-width: 768px) {
+    .rich-text h2 {
+        font-size: 22px;
+    }
+    .rich-text p,
+    .rich-text ol li {
+        font-size: 14px;
+    }
+}
