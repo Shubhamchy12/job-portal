@@ -1,9 +1,29 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const {companyData,setcompanyToken,setcompanyData} = useContext(AppContext)
+
+  // function to logout for company
+
+  const logout = ()=>{
+    setcompanyToken(null)
+    localStorage.removeItem('companyToken')
+    setcompanyData(null)
+    navigate('/')
+  }
+
+  useEffect(()=>{
+    if(companyData){
+      navigate('/dashboard/mange-job')
+    }
+  },[companyData])
   return (
     <div className="min-h-screen">
       {/* navbar for recuriter panel */}
@@ -16,21 +36,25 @@ const Dashboard = () => {
             src={assets.logo}
             alt=""
           />
-          <div className="flex items-center gap-3">
-            <p className="max-sm:hidden">Welcome, Shubham</p>
+
+           {companyData && (
+            <div className="flex items-center gap-3">
+            <p className="max-sm:hidden">Welcome, {companyData.name}</p>
             <div className="relative group">
               <img
                 className="w-8 border rounded-full "
-                src={assets.company_icon}
+                src={companyData.img}
                 alt=""
               />
               <div className="absolute top-0 right-0 z-10 hidden pt-12 text-black rounded group-hover:block">
                 <ul className="p-2 m-0 text-sm list-none bg-white border rounded-md">
-                  <li className="px-2 py-1 pr-10 cursor-pointer">Logout</li>
+                  <li onClick={logout} className="px-2 py-1 pr-10 cursor-pointer">Logout</li>
                 </ul>
               </div>
             </div>
           </div>
+           )} 
+          
         </div>
       </div>
 
