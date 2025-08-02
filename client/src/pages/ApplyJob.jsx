@@ -166,7 +166,8 @@ const ApplyJob = () => {
                   
                       // set of job applied
                       {
-                        const appliedJobs = new set(userApplication.map(app => app.jobId && app.jobId._id))
+                        const appliedJobs = new 
+                        Set(userApplication.map(app => app.jobId && app.jobId._id))
 
                           // return true if the user has not already applied for this job
                         return  !appliedJobs.has(job._id)
