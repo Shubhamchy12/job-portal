@@ -156,7 +156,7 @@ const ApplyJob = () => {
 
             <div className="w-full mt-8 space-y-5 lg:w-1/3 lg:mt-0 lg:ml-8">
               <h2>More jobs from {jobdata.companyId.name}</h2>
-              {jobs
+              {/* {jobs
                 .filter(
                   (job) =>
                     job._id !== jobdata._id &&
@@ -176,7 +176,26 @@ const ApplyJob = () => {
                 .slice(0, 4)
                 .map((job, index) => (
                   <JobCart key={index} job={job} />
-                ))}
+                ))} */}
+
+
+
+                {jobs
+  .filter(
+    (job) =>
+      job._id !== jobdata._id &&
+      job.companyId._id === jobdata.companyId._id
+  )
+  .filter((job) => {
+    const appliedJobs = new Set(
+      (userApplication || []).map((app) => app.jobId && app.jobId._id)
+    );
+    return !appliedJobs.has(job._id);
+  })
+  .slice(0, 4)
+  .map((job, index) => (
+    <JobCart key={index} job={job} />
+  ))}
             </div>
           </div>
         </div>
